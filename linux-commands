@@ -1,0 +1,207 @@
+scp *.log mdarretta@symfonie.spectraeastnj.com:/home/mdarretta/placapilog
+
+grep -rnw '/path/to/somewhere/' -e 'pattern'
+
+
+#Run jar 
+C:\Progra~1\Java\jdk1.8.0_152\bin\java -jar prh-UI-1.0.jar
+
+#list files by date
+ find . -type f -mtime +100 -exec ls --full-time {} \;
+find . -type f -mtime +365 -print | ls --full-time -lt
+
+#windows kill pid
+taskkill /pid 628 /f
+#check port / ip avaya
+netstat -anto | find "10.13.18.20"
+netstat -anto | grep "10.13.18.20"
+netstat -ano|find ":80"
+===========================================================
+====================================================================================================
+Daemons:
+
+Replace <myservice> with your daemon and put this script in /etc/init.d folder.
+
+Code:
+#!/bin/sh
+#
+# myservice     This shell script takes care of starting and stopping
+#               the <myservice>
+#
+
+# Source function library
+. /etc/rc.d/init.d/functions
+
+ 
+# Do preliminary checks here, if any
+#### START of preliminary checks #########
+
+
+##### END of preliminary checks #######
+
+
+# Handle manual control parameters like start, stop, status, restart, etc.
+
+case "$1" in
+  start)
+    # Start daemons.
+
+    echo -n $"Starting <myservice> daemon: "
+    echo
+    daemon <myservice>
+    echo
+    ;;
+
+  stop)
+    # Stop daemons.
+    echo -n $"Shutting down <myservice>: "
+    killproc <myservice>
+    echo
+
+    # Do clean-up works here like removing pid files from /var/run, etc.
+    ;;
+  status)
+    status <myservice>
+
+    ;;
+  restart)
+    $0 stop
+    $0 start
+    ;;
+
+  *)
+    echo $"Usage: $0 {start|stop|status|restart}"
+    exit 1
+esac
+
+exit 0
+
+===========
+hardware
+-----------
+ lspci | more
+lsusb
+lscpu
+
+
+=========================================================
+Linux: java -classpath "lib/*.jar:." my.package.Program 
+
+=======================================================================
+===================================================================================================
+Linux Dirs:
+/bin - common binaries 
+/sbin - Binaries used for system administration are placed here. 
+/boot - static files of the boot loader. Usually it contain the Linux kernel, Grub boot loader files and so on. 
+/dev - device files such as your CD drive, hard disk, and any other physical device. (In Linux/Unix, the common premise is that everything is a file). 
+/home - user home directories are found here. In unices like FreeBSD, the home directories are found in /usr/home. And in Solaris it is in /export. So quite a big difference here. 
+/lib - Essential shared libraries and kernel modules 
+/mnt - temporary mount point useful for when you insert your USB stick and it gets mounted under /mnt. Though in Ubuntu and the likes, it is usually mounted under /media. 
+/var - variable data, such as logs, news, mail spool files and so on which is constantly being modified by various programs running on your system. 
+/tmp - temporary files are placed here by default. 
+/usr - the secondary hierarchy which contain its own bin and sbin sub-directories. 
+/etc - Usually contain the configuration files for all the programs that run on your Linux/Unix system. 
+/opt - Third party application packages which does not conform to the standard Linux file hierarchy can be installed here. 
+/srv - Contains data for services provided by the system.
+
+
+The basic directory structure in Linux
+Now type this: ls 
+You will probably see something like this: 
+
+
+
+cdrom 
+home
+opt
+tmp
+
+
+dev
+lib
+proc
+usr
+
+
+bin
+etc
+lost+found
+
+root
+var
+boot
+floppy
+mnt
+sbin
+
+
+
+They will be blue in color. Those are directories. 
+The /bin directory
+Now type this: cd bin 
+Type ls again. 
+This is the famous bin/ directory. You know, I have always felt this one was misnamed. For example, when people say, 'That's no good, throw it in the bin'. Actually, bin/ is one of the most important directories in Linux. You'll find all of the most used commands there. Right now you should be seeing a lot of red (or green, depending on your version of Linux). Those are programs. 
+The /etc directory 
+Now let's look at another directory. There's a long way and a short cut. First the long way. 
+'cd ..' will get you out of bin/. 
+'cd etc' will get you into the etc/ directory. 
+or you can just type 'cd /etc' in the bin/ directory and it will bring you to the etc/ directory . 
+Anyway, you are now in the etc/ directory. This houses most of the configuration files for Linux. lilo.conf, the file that tells you which OS to boot is in there. 
+you'll see: lilo.conf 
+And you don't even have to type the whole thing. You could just type 'ls li' and push the tab key. Linux will type the rest for you. Isn't that cool! 
+
+====================================================================================================================================
+
+
+https://askubuntu.com/questions/111422/how-to-find-zombie-process
+ps aux | grep 'Z'
+ps axo pid=,stat= | awk '$2~/^Z/ { print }'
+ps afuwwx | less +u -p'^(\S+\s+){7}Z.*'
+
+Networking:
+ifconfig: Displays and configures network interfaces
+ip: A versatile command for network configuration, routing tables, and more.
+traceroute: Determines the route packets take to reach a destination. 
+netstat: Displays network statistics, connections, routing tables, and more. 
+ss: A tool to investigate sockets, network connections, and more.
+dig: A DNS lookup utility for querying DNS servers. 
+host: Another DNS lookup utility for translating hostnames to IP addresses and vice versa. 
+nslookup: Yet another DNS lookup utility for querying DNS servers. 
+route: Displays and manipulates the IP routing table. 
+iptables: A powerful firewall utility for configuring packet filtering rules. 
+nmap: A network scanning tool for discovering devices on a network. 
+wget: Retrieves content from web servers. 
+ssh: Securely connects to remote servers. 
+scp: Securely copies files between hosts. 
+arp: Displays and modifies the Address Resolution Protocol (ARP) cache. 
+ethtool: Displays or changes ethernet card settings.
+tcpdump: A packet analyzer that captures and displays network packets.
+
+Monitoring:
+top: Displays real-time system information, including CPU and memory usage. 
+htop: An interactive system-monitor process-viewer and process-manager.
+vmstat: Reports information about processes, memory, paging, block IO, traps, and CPU activity. 
+iostat: Reports CPU utilization and disk I/O statistics. 
+sar: Collects, reports, or saves system activity information. 
+free: Displays the amount of free and used memory in the system. 
+uptime: Shows how long the system has been running, as well as load averages.
+ps: Reports a snapshot of the current processes. 
+pidstat: Monitors system resources, such as CPU, memory, and I/O usage for a specific process. 
+dstat: Combines vmstat, iostat, and ifstat and presents it in a more user-friendly way. 
+nmon: A system performance monitor for Linux that displays performance data in a clear, concise way.
+perf: A performance analyzing tool in Linux that supports various types of analysis.
+mpstat: Reports processors related statistics. 
+iftop: Displays bandwidth usage on an interface by host. 
+iotop: Monitors I/O usage information on a per-process basis. 
+lsof: Lists open files and the processes that opened them. 
+strace: Traces system calls and signals. 
+
+Managing Processes:
+ps: Provides information about currently running processes. 
+pidstat: Reports statistics for processes and threads, including CPU, memory, and I/O usage. 
+pgrep: Lists processes based on name or other attributes. 
+killall: Kills processes by name. 
+pstree: Displays processes in a tree structure.
+nice: Runs a command with a specified priority.  
+renice: Changes the priority of a running process. 
+
